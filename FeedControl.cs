@@ -26,6 +26,7 @@ namespace EsccWebTeam.Feeds
         private ITemplate footerTemplate;
         private int maxItems = -1;
         private int refreshInterval = 60;
+        private bool forceCacheRefresh;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FeedControl"/> class.
@@ -33,6 +34,7 @@ namespace EsccWebTeam.Feeds
         public FeedControl()
             : base(HtmlTextWriterTag.Div)
         {
+            if (Context != null) forceCacheRefresh = Context.Request.QueryString["ForceCacheRefresh"] == "1";
         }
 
         /// <summary>
@@ -228,7 +230,7 @@ namespace EsccWebTeam.Feeds
             // nor to keep requesting the XML if the feed itself is the problem. If there's been an error 
             // in the last 10 minutes, don't try again.
             string errorCachekey = "EsccWebTeam.Feeds.LastError." + this.feedUri;
-            if (this.Page.Cache[errorCachekey] != null) return null;
+            if (this.Page.Cache[errorCachekey] != null && !forceCacheRefresh) return null;
 
             // Variable to store the text of the response, so we can include it in the error message if it's not valid XML
             string responseString = null;
@@ -241,7 +243,7 @@ namespace EsccWebTeam.Feeds
             try
             {
                 XPathDocument feedXml = null;
-                if (this.Page.Cache[cachekey] != null)
+                if (this.Page.Cache[cachekey] != null && !forceCacheRefresh)
                 {
                     feedXml = (XPathDocument)this.Page.Cache[cachekey];
                 }
