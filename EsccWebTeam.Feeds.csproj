@@ -51,6 +51,9 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EsccWebTeam.Data.Xml">
+      <HintPath>S:\_Reference DLLs\EsccWebTeam pre-NuGet\EsccWebTeam.Data.Xml - Release\EsccWebTeam.Data.Xml.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ApplicationBlocks.ExceptionManagement, Version=1.0.0.0, Culture=neutral, PublicKeyToken=06fad7304560ae6f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>S:\_Reference DLLs\Microsoft Exception Management Application Block\Release strong-named .NET 2\Microsoft.ApplicationBlocks.ExceptionManagement.dll</HintPath>
@@ -65,12 +68,6 @@
     <Compile Include="FeedControl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XhtmlContainer.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Escc.Data.Xml\EsccWebTeam.Data.Xml.csproj">
-      <Project>{86B2725C-9C37-44A4-93C7-F5122AFA0809}</Project>
-      <Name>EsccWebTeam.Data.Xml</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
